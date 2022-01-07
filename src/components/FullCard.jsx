@@ -7,8 +7,7 @@ export default function FullCard(){
 
     const [data,setData] = React.useState(setDatafromLocalStorageOrNot())
     const [listData, setlistData] = React.useState([])
-    const [edit,setEdit] = React.useState(false)
-
+    
     
     function setDatafromLocalStorageOrNot(){
         const list = localStorage.getItem('todo')
@@ -35,10 +34,7 @@ export default function FullCard(){
             
     }
 
-    function handleEdit(){
-        console.log('Hey')
-        setEdit(prevData=>!prevData)
-    }
+    
 
     function handleEditChange(editIndex,val){
         console.log(data[editIndex])
@@ -49,7 +45,7 @@ export default function FullCard(){
             return newArr
         })
         
-        handleEdit()
+        
         
     }
 
@@ -71,7 +67,7 @@ export default function FullCard(){
                 <button className="px-6 text-fuchsia-50 rounded hover:bg-blue-400 py-2 bg-blue-500">Add</button>
             </form>
 
-        {data.map((item,index)=><SingleList key={index} id={index} text={item} delete={handleDelete} edit={edit} editFunction={handleEdit} editChange={handleEditChange}/>)}
+        {data.map((item,index)=><SingleList key={index} id={index} text={item} delete={handleDelete}  editChange={handleEditChange}/>)}
 
         
             
