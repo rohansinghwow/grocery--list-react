@@ -2,21 +2,13 @@ import React from "react";
 
 export default function SingleList(props){
 
-    const [editText, setEditText] = React.useState('')
-
-    function handleChangeList(event){
-        const editList = event.target.value
-    }
-
-    function handleSubmitList(){
-        props.editChange()
-    }
+    const textEdit = React.useRef(null)
 
     return (
         <div className="flex justify-between flex-wrap items-center list px-4 py-6 w-full">
                 <div className="list-content flex justify-start items-center">
-                    <input className="accent-rose-300 text-gray-100  border-blue-600 w-5 h-5 mx-3 rounded-md"  type="checkbox" name="checker" id="check"/>
-                    {props.edit ? <input type='text' name="editInput" defaultValue={props.text} value={props.text} className="text-gray-600 py-1 px-1"/>:
+                    <input className="accent-rose-300 text-gray-100  border-blue-600 w-5 h-5 mx-3 rounded-md"  type="checkbox" />
+                    {props.edit ? <input type='text' name="editInput" ref={textEdit} defaultValue={props.text}  className="text-gray-600 py-1 px-1"/>:
                     <span className="text-gray-600 ">{props.text}</span>}
                    
                     
@@ -27,7 +19,7 @@ export default function SingleList(props){
                 props.edit?
                 <div className="btn">
                     <button onClick={props.editFunction}>Close</button>
-                    <button onClick={()=>props.editChange(props.id,editInput.value)}>Ok</button>
+                    <button onClick={()=>props.editChange(props.id,textEdit.current.value)}>Ok</button>
                 </div>
                 :
 

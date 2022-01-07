@@ -27,9 +27,17 @@ export default function FullCard(){
         setEdit(prevData=>!prevData)
     }
 
-    function handleEditChange(index,event){
-        const editVal = event.target.value
-        console.log(editVal)
+    function handleEditChange(editIndex,val){
+        console.log(data[editIndex])
+         
+        setData(()=>{
+            const newArr = [...data]
+            newArr[editIndex] = val
+            return newArr
+        })
+        
+        handleEdit()
+        
     }
 
     function handleDelete(id){
