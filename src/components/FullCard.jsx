@@ -5,9 +5,21 @@ import SingleList from "./SingleList";
 
 export default function FullCard(){
 
-    const [data,setData] = React.useState([])
-    const [listData, setlistData] = React.useState('')
+    const [data,setData] = React.useState(setDatafromLocalStorageOrNot())
+    const [listData, setlistData] = React.useState([])
     const [edit,setEdit] = React.useState(false)
+
+    
+    function setDatafromLocalStorageOrNot(){
+        const list = localStorage.getItem('todo')
+        if(list){
+            return JSON.parse(list)
+        }
+        else{
+            return []
+        }
+    }
+    
 
     function handleChange(event){
         setlistData(prevData=>{
@@ -19,6 +31,7 @@ export default function FullCard(){
             event.preventDefault()
             const newList = [...data, listData]
             setData(prevData=>prevData=newList)
+            
             
     }
 
@@ -45,6 +58,10 @@ export default function FullCard(){
         setData(listfilter)
     }
     
+    React.useEffect(()=>{
+        localStorage.setItem('todo', JSON.stringify(data))
+        
+    }, [data])
 
     return(
         <div className="divide-y mt-5 divide-gray-300 max-w-screen-sm shadow-md bg-white container rounded-md mx-auto">
@@ -55,6 +72,8 @@ export default function FullCard(){
             </form>
 
         {data.map((item,index)=><SingleList key={index} id={index} text={item} delete={handleDelete} edit={edit} editFunction={handleEdit} editChange={handleEditChange}/>)}
+
+        
             
 
             
