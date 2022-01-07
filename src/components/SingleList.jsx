@@ -13,9 +13,9 @@ export default function SingleList(props){
     return (
         <div className="flex justify-between flex-wrap items-center list px-4 py-6 w-full">
                 <div className="list-content flex justify-start items-center">
-                    <input className="accent-gray-300 text-gray-100  border-blue-600 w-5 h-5 mx-3 rounded-md"  type="checkbox" />
-                    {edit ? <input type='text' name="editInput" ref={textEdit} defaultValue={props.text}  className="text-gray-600 py-1 px-1 border-2 border-blue-500 rounded-md "/>:
-                    <span className="text-gray-600 ">{props.text}</span>}
+                    
+                    {edit ? <input type='text' placeholder=" " name="editInput" ref={textEdit} defaultValue={props.text}  className="text-gray-600 py-1 px-1 border-2 border-blue-500 rounded-md "/>:
+                    <span className="text-gray-600 ml-2">{props.text}</span>}
                    
                     
                 </div>

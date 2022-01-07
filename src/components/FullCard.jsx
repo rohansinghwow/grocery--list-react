@@ -34,7 +34,10 @@ export default function FullCard(){
             
     }
 
-    
+    function clearAll(){
+        setData([])
+        localStorage.clear()
+    }
 
     function handleEditChange(editIndex,val){
         console.log(data[editIndex])
@@ -60,7 +63,7 @@ export default function FullCard(){
     }, [data])
 
     return(
-        <div className="divide-y mt-5 divide-gray-300 max-w-screen-sm shadow-md bg-white container rounded-md mx-auto">
+        <div className="divide-y mt-5 pb-6 divide-gray-300 max-w-screen-sm shadow-md bg-white container rounded-md mx-auto">
 
             <form onSubmit={handleSubmit} className="input-feild flex px-4 py-4 justify-between items-center">
                 <input onChange={handleChange} value={listData} type="text" name="inputText" id="inputText" className="input-box py-2 px-2 w-12/13 border-rose-500 border-2 rounded" />
@@ -72,7 +75,7 @@ export default function FullCard(){
         
             
 
-            
+        <button onClick={clearAll} className=" px-4 py-2 bg-blue-500 rounded text-gray-50  grid place-content-center w-32  mx-auto shadow-sm"><span className="text-center">Clear All</span></button>
         </div>
     )
 }
